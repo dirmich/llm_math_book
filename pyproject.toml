@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-math"
-version = "0.1.0"
+version = "0.1.1"
 description = "Shared utilities and runnable exercises for LLM Math Book"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -60,9 +60,9 @@ include = [
     "tests",
     "scripts",
 ]
-exclude = ["venv"]
+exclude = [".venv", "venv"]
 typeCheckingMode = "basic"
 reportMissingTypeStubs = false
 reportUnsupportedDunderAll = false
 venvPath = "."
-venv = "venv"
+venv = ".venv"
