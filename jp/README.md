@@ -7,16 +7,21 @@
 ## 内容
 
 - `notebooks/`: 日本語の実行可能なノートブック
-- `solutions/`: 日本語の解答ノートブック
+- `solutions/`: Ch01-Ch05 の日本語解答ノートブック
 - `benchmarks/`: 日本語の CPU/GPU ベンチマークスクリプト
 - `../src/llm_math/`: 共通ユーティリティ
 - `../data/`: 小規模な練習用データ
 
+## 公開範囲
+
+現在公開している解答ノートブックは Ch01-Ch05 のみです。未完成の
+Ch06-Ch32 解答 placeholder は、章に対応した完成版が用意できるまで
+公開対象から削除しました。
+
 ## クイックスタート
 
 ```bash
-pip install -r requirements.txt
-pip install -e .
+pip install -e ".[notebook]"
 jupyter lab
 ```
 

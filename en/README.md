@@ -7,16 +7,21 @@ Languages: [Korean](../ko/), [Japanese](../jp/)
 ## Contents
 
 - `notebooks/`: English runnable notebooks
-- `solutions/`: English solution notebooks
+- `solutions/`: English solution notebooks for Ch01-Ch05
 - `benchmarks/`: English CPU/GPU benchmark scripts
 - `../src/llm_math/`: shared utilities
 - `../data/`: small practice datasets
 
+## Published Scope
+
+The published solution notebooks currently cover Ch01-Ch05 only. Incomplete
+Ch06-Ch32 solution placeholders were removed until complete, chapter-matched
+solutions are available.
+
 ## Quick Start
 
 ```bash
-pip install -r requirements.txt
-pip install -e .
+pip install -e ".[notebook]"
 jupyter lab
 ```
 

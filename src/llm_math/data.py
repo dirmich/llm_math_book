@@ -2,13 +2,13 @@
 
 - Tiny Shakespeare
 - Tiny English text
+- Tiny Korean text
 - XOR data
 - MNIST through scikit-learn fetch_openml
 """
 
 from __future__ import annotations
 
-import os
 import urllib.request
 from pathlib import Path
 from typing import Optional
@@ -47,7 +47,7 @@ def load_tiny_shakespeare(data_dir: Optional[str] = None, max_chars: Optional[in
     if not fp.exists():
         try:
             urllib.request.urlretrieve(_TINY_SHAKESPEARE_URL, fp)
-        except Exception:
+        except OSError:
             # Small fallback text for offline environments.
             dummy = (
                 "To be, or not to be, that is the question:\n"
@@ -79,7 +79,32 @@ def load_mini_english(data_dir: Optional[str] = None) -> str:
     return fp.read_text(encoding='utf-8')
 
 
-load_mini_korean = load_mini_english
+def load_mini_korean(data_dir: Optional[str] = None) -> str:
+    """Load a tiny Korean practice corpus.
+
+    The bundled file is intentionally small and deterministic so tokenizer and
+    language-model examples can run offline without falling back to English.
+    """
+    d = get_data_dir(data_dir)
+    fp = d / "mini_korean.txt"
+    if fp.exists():
+        return fp.read_text(encoding='utf-8')
+
+    bundled = _DEFAULT_DATA_DIR / "mini_korean.txt"
+    if bundled.exists() and bundled != fp:
+        text = bundled.read_text(encoding='utf-8')
+        fp.write_text(text, encoding='utf-8')
+        return text
+
+    # Fallback text is original project content and is covered by the repo license.
+    dummy = (
+        "대규모 언어 모델은 문장의 다음 토큰을 예측하며 언어의 패턴을 배운다. "
+        "토크나이저는 한국어 문장을 작은 단위로 나누고 다시 복원할 수 있어야 한다. "
+        "어텐션은 문맥 안의 단어 사이 관계를 계산하여 중요한 정보를 강조한다. "
+        "실험 코드는 같은 입력에서 항상 같은 결과를 만들도록 시드를 고정한다.\n"
+    ) * 50
+    fp.write_text(dummy, encoding='utf-8')
+    return dummy
 
 
 def make_xor_data() -> tuple[np.ndarray, np.ndarray]:
@@ -152,6 +177,9 @@ def load_mnist_small(n_train: int = 5000, n_test: int = 1000, seed: int = 0
 def make_tiny_corpus(max_chars: int = 10000, language: str = 'en',
                      data_dir: Optional[str] = None) -> str:
     """Return a tiny corpus for language-model experiments."""
-    if language == 'ko':
-        return load_mini_english(data_dir)[:max_chars]
-    return load_tiny_shakespeare(data_dir, max_chars=max_chars)
+    lang = language.lower()
+    if lang == 'ko':
+        return load_mini_korean(data_dir)[:max_chars]
+    if lang == 'en':
+        return load_tiny_shakespeare(data_dir, max_chars=max_chars)
+    raise ValueError(f"Unsupported language: {language!r}")

@@ -7,16 +7,20 @@
 ## 구성
 
 - `notebooks/`: 한국어 실행 노트북
-- `solutions/`: 한국어 해설 노트북
+- `solutions/`: Ch01-Ch05 한국어 해설 노트북
 - `benchmarks/`: 한국어 CPU/GPU 성능 비교 스크립트
 - `../src/llm_math/`: 공통 유틸리티
 - `../data/`: 실습용 작은 데이터
 
+## 공개 범위
+
+현재 공개된 해설 노트북은 Ch01-Ch05뿐입니다. 완성되지 않은 Ch06-Ch32
+해설 placeholder는 공개 목록에서 제거했습니다.
+
 ## 빠른 시작
 
 ```bash
-pip install -r requirements.txt
-pip install -e .
+pip install -e ".[notebook]"
 jupyter lab
 ```
 

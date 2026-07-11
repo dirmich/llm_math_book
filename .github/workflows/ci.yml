@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package
+        run: python -m pip install -e ".[dev,notebook]"
+      - name: Run tests
+        run: python -m pytest
+      - name: Ruff
+        run: ruff check src tests scripts ko/benchmarks en/benchmarks jp/benchmarks
+      - name: Pyright
+        run: pyright
+      - name: Check notebook syntax
+        run: python scripts/check_notebook_syntax.py
+      - name: Check release placeholders
+        run: python scripts/check_release_placeholders.py
+      - name: Run shared benchmark correctness checks
+        if: matrix.python-version == '3.11'
+        run: MPLBACKEND=Agg python scripts/run_benchmarks.py --device cpu --assert-correctness
+      - name: Execute all published multilingual notebooks
+        if: matrix.python-version == '3.11'
+        run: python scripts/run_notebooks.py --lang ko,en,jp --kind notebooks,solutions

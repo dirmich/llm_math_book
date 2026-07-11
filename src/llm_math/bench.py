@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import time
 from statistics import mean, stdev
-from typing import Callable, Any, Optional
+from typing import Callable, Any
 
 try:
     import torch

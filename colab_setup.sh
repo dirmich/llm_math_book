@@ -12,7 +12,7 @@ echo "  -> System packages updated"
 
 # 2. Install Python packages
 echo "[2/4] Installing Python packages..."
-pip install -q -r requirements.txt 2>&1 | tail -3
+pip install -q -e ".[notebook]" 2>&1 | tail -3
 echo "  -> Python packages installed"
 
 # 3. Add repository paths to Python path

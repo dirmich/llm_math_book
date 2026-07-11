@@ -5,7 +5,5 @@
 - `llm_math.data`: small dataset loaders
 """
 
-from . import viz, bench, data  # noqa: F401
-
 __version__ = "0.1.0"
 __all__ = ["viz", "bench", "data"]
