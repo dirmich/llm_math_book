@@ -1,13 +1,19 @@
+import importlib.util
 from pathlib import Path
 
 
-def test_ch06_to_ch32_solution_placeholders_are_not_published() -> None:
-    root = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[2]
+SPEC = importlib.util.spec_from_file_location(
+    "check_release_placeholders", ROOT / "scripts" / "check_release_placeholders.py"
+)
+assert SPEC and SPEC.loader
+RELEASE_CHECKS = importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(RELEASE_CHECKS)
 
-    published = [
-        root / lang / "solutions" / f"ch{chapter:02d}_solutions.ipynb"
-        for lang in ("ko", "en", "jp")
-        for chapter in range(6, 33)
-    ]
 
-    assert not [path for path in published if path.exists()]
+def test_published_notebook_inventory_is_complete() -> None:
+    assert RELEASE_CHECKS.check_inventory(ROOT) == []
+
+
+def test_published_notebooks_are_release_ready() -> None:
+    assert RELEASE_CHECKS.check_release(ROOT) == []

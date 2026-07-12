@@ -7,7 +7,7 @@ Language folders: [English](en/), [Korean](ko/), [Japanese](jp/)
 ## Contents
 
 - `ko/notebooks/`: Korean runnable notebooks
-- `ko/solutions/`: Korean solution notebooks for Ch01-Ch05 only
+- `ko/solutions/`: Korean solution notebooks for Ch01-Ch32
 - `ko/benchmarks/`: Korean CPU/GPU benchmark scripts
 - `en/`: English materials, added as they become available
 - `jp/`: Japanese materials, added as they become available
@@ -16,10 +16,9 @@ Language folders: [English](en/), [Korean](ko/), [Japanese](jp/)
 
 ## Current Published Scope
 
-This public repository currently publishes notebooks for Ch00-Ch32 and solution
-notebooks only for Ch01-Ch05 in each language. The unfinished Ch06-Ch32 solution
-placeholders were removed from `ko/solutions/`, `en/solutions/`, and
-`jp/solutions/` until complete, chapter-matched solutions are available.
+This public repository publishes Ch00-Ch32 exercise notebooks and Ch01-Ch32
+solution notebooks in Korean, English, and Japanese: 32 solutions per language,
+96 solution notebooks and 195 notebooks in total.
 
 ## Quick Start
 

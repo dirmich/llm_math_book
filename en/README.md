@@ -7,16 +7,16 @@ Languages: [Korean](../ko/), [Japanese](../jp/)
 ## Contents
 
 - `notebooks/`: English runnable notebooks
-- `solutions/`: English solution notebooks for Ch01-Ch05
+- `solutions/`: English solution notebooks for Ch01-Ch32
 - `benchmarks/`: English CPU/GPU benchmark scripts
 - `../src/llm_math/`: shared utilities
 - `../data/`: small practice datasets
 
 ## Published Scope
 
-The published solution notebooks currently cover Ch01-Ch05 only. Incomplete
-Ch06-Ch32 solution placeholders were removed until complete, chapter-matched
-solutions are available.
+Ch00-Ch32 exercise notebooks and Ch01-Ch32 solution notebooks are published in
+Korean, English, and Japanese: 32 solutions per language, 96 solution notebooks,
+and 195 notebooks in total.
 
 ## Quick Start
 

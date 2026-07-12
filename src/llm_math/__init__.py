@@ -5,5 +5,5 @@
 - `llm_math.data`: small dataset loaders
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.2"
 __all__ = ["viz", "bench", "data"]
